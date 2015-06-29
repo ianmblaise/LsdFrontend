@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LsdFrontend", "LsdFrontend\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LsdLibrary", "LsdLibrary\LsdLibrary.csproj", "{7E73F2D1-07CF-4C9F-B1EF-BEBC5E5209C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LsdLibraryTests", "LsdLibraryTests\LsdLibraryTests.csproj", "{950439F6-6E98-491E-8825-8FF57B7D337F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,10 +24,6 @@ Global
 		{7E73F2D1-07CF-4C9F-B1EF-BEBC5E5209C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E73F2D1-07CF-4C9F-B1EF-BEBC5E5209C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E73F2D1-07CF-4C9F-B1EF-BEBC5E5209C8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{950439F6-6E98-491E-8825-8FF57B7D337F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{950439F6-6E98-491E-8825-8FF57B7D337F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{950439F6-6E98-491E-8825-8FF57B7D337F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{950439F6-6E98-491E-8825-8FF57B7D337F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

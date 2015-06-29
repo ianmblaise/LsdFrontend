@@ -1,22 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LsdLibraryTests
 {
-    [TestClass()]
+    [TestClass]
     public class LolSkillDataTests
     {
-        [TestMethod()]
-        public void LolSkillDataTest()
+        public static string TestName;
+        public static string TestRegion;
+
+        
+        public LolSkillDataTests(string testName, string testRegion)
         {
-            Assert.Fail();
+            TestName = testName;
+            TestRegion = testRegion;
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void DownloadGameDataStringTest()
         {
-            var SearchName = "";
+            var SearchName = "xelle";
             // -- Throw an exception if the SearchName is blank. -- // 
             if (string.IsNullOrEmpty(SearchName))
             {
@@ -37,24 +42,6 @@ namespace LsdLibraryTests
 
         [TestMethod()]
         public void ParseGameDataTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void OnGameDataDownloadStartedTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void OnGameDataParsedTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void OnGameDataRetrievedTest()
         {
             Assert.Fail();
         }

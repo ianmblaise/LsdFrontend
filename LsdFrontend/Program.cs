@@ -12,30 +12,25 @@ namespace LsdFrontend
     {
         static void Main(string[] args)
         {
+            // Subscribe to the events 
             LolSkillData.GameDataRetrieved += LolSkillData_GameDataRetrieved;
             LolSkillData.GameDataDownloadStarting += LolSkillData_GameDataDownloadStarting;
             LolSkillData.GameDataParsed += LolSkillData_GameDataParsed;
 
-            Console.WriteLine("Hi, enter some summoner names, seperated by commas.");
-            var readLine = Console.ReadLine();
-            if (readLine != null)
+          while(true)
             {
-                string[] names = readLine.Split(',');
+                Console.WriteLine("Hi, enter some summoner names, seperated by commas.");
 
-                for (var i = 0; i < names.Length; i++)
+                var readLine = Console.ReadLine();
+                if (readLine == null) continue;
+
+                var names = readLine.Split(',');
+
+                foreach (var lsd in from t in names where t != null select t.TrimStart(' ') into name select name.TrimEnd(' ') into name select new LolSkillData(name, "NA"))
                 {
-                    if (names[i] == null)
-                    {
-                        continue;
-                    }
-
-                    string name = names[i].TrimStart(' ');
-                    name = name.TrimEnd(' ');
-                    LolSkillData lsd = new LolSkillData(name, "NA");
                     lsd.DownloadGameDataString();
                 }
             }
-            Console.ReadLine();
         }
         /// <summary>
         ///     todo: IMPLEMENT THIS FUNCTION NEXT
@@ -44,12 +39,33 @@ namespace LsdFrontend
         /// <param name="e"></param>
         private static void LolSkillData_GameDataParsed(object sender, LsdDownloadEventArgs e)
         {
-            //TODO: WORK ON ASAP
+            var lsd = (LolSkillData) sender;
+
+            if (lsd == null)
+            {
+                Console.WriteLine("no data from sender.");
+                return;
+            }
+
+            var dictData = (Dictionary<string, string>) e.Result;
+
+            if (dictData == null || dictData.Keys.Count < 1)
+            {
+                Console.WriteLine("No keys or null dictionary.");
+                return;
+            }
+
+            Console.WriteLine("---------------------------\n" + lsd.SearchName + "\'s game.\n--------------------------");
+
+            foreach (var item in dictData)
+            {
+                    Console.WriteLine(item.Key + " = " + item.Value);
+            }
         }
 
         private static void LolSkillData_GameDataDownloadStarting(object sender, LsdDownloadEventArgs e)
         {
-            LolSkillData senderObj = (LolSkillData) sender;
+            var senderObj = (LolSkillData) sender;
             if (senderObj == null)
             {
                 throw new ArgumentNullException(nameof(sender), "The sender has no value.");
@@ -59,19 +75,17 @@ namespace LsdFrontend
 
         private static void LolSkillData_GameDataRetrieved(object sender, LsdDownloadEventArgs e)
         {
-            LolSkillData senderObj = (LolSkillData)sender;
+            var senderObj = (LolSkillData) sender;
             if (senderObj == null)
             {
                 throw new ArgumentNullException(nameof(sender), "The sender has no value.");
             }
 
-            Console.WriteLine($"Got data for {senderObj.SearchName} So now parse the page.");
-
             if (e.Result == null)
             {
-                throw new Exception("The value of Result was not valid. ", new Exception("Result was null! Here is what I know: " + e.Message));
+                throw new Exception("The value of Result was not valid. ",
+                    new Exception("Result was null! Here is what I know: " + e.Message));
             }
-            
         }
     }
 }
